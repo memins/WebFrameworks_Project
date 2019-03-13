@@ -36,8 +36,10 @@ public class NewsServlet extends HttpServlet {
 		
 		for (News news : newsList) {
 			html.append(
-				"<h2>" + news.getTitle() + "</h2>" +
-				"<p>" + news.getText() + "</p>"
+				"<h2>" + news.getLastname() + "</h2>" +
+				"<p>" + news.getFirstname() + "</p>" +
+				"<p>" + news.getBirthDate() + "</p>" +
+				"<p>" + news.getActive()    + "</p>"
 			);
 		}
 		

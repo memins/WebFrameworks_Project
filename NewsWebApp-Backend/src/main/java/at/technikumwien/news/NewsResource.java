@@ -23,6 +23,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Response.Status;
 
+
 @Path("/news")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -62,8 +63,10 @@ public class NewsResource {
 
 		News newsOld = em.find(News.class, id);
 		if (newsOld != null) {
-			newsOld.setTitle(newsNew.getTitle());
-			newsOld.setText(newsNew.getText());
+			newsOld.setFirstname(newsNew.getFirstname());
+			newsOld.setLastname(newsNew.getLastname());
+			newsOld.setBirthDate(newsNew.getBirthDate());
+			newsOld.setActiveState(newsNew.getActive());
 		}
 		else {
 			throw new WebApplicationException(Status.NOT_FOUND);

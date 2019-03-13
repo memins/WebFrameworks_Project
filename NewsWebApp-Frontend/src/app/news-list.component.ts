@@ -4,21 +4,35 @@ import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 @Component({
   selector: "app-news-list",
   template: `
-  <table>
+    <table>
       <thead>
+        <tr>
+          <th>Suchen:</th>
+          <th>
+            <input type="text" [(ngModel)]="filteredStatus" />
+          </th>
+          <th>Filtert nach: {{ filteredStatus }}</th>
+        </tr>
         <tr>
           <th>ID</th>
           <th>Vorname</th>
           <th>Nachname</th>
           <th>Geburtsdatum</th>
-          <th>Status</th>
-          <th><button (click)="addNews()">Kunden hinzufügen</button></th>
+          <th>Aktiviert</th>
+          <th>
+            <button (click)="addNews()" class="btn btn-success">
+              Kunden hinzufügen
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let news of newsList">
+        <tr *ngFor="let news of (newsList | filter: filteredStatus)">
           <td>{{ news.id }}</td>
-          <td>{{ news.title }}</td>
+          <td>{{ news.firstName }}</td>
+          <td>{{ news.lastName }}</td>
+          <td>{{ news.birthDate }}</td>
+          <td>{{ news.active }}</td>
           <td>
             <button (click)="editNews(news)">
               <img src="assets/edit.gif" />
@@ -81,7 +95,10 @@ export class NewsListComponent implements OnInit {
     this.add.emit();
   }
 
+  filteredStatus = "";
+
   private editNews(news: News) {
+    console.log(news);
     this.edit.emit(news.id);
   }
 

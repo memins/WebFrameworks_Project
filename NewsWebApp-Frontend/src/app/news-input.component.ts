@@ -1,83 +1,126 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { News, NewsService } from './services';
+import { Component, Output, EventEmitter } from "@angular/core";
+import { News, NewsService } from "./services";
 
 @Component({
-  selector: 'app-news-input',
+  selector: "app-news-input",
   template: `
     <form *ngIf="news" novalidate #form="ngForm">
-      <h2>{{news.id ? 'Bearbeite News' : 'Füge News hinzu'}} ...</h2>
+      <h2>{{ news.id ? "Bearbeite Kunde" : "Füge Kunden hinzu" }} ...</h2>
       <p *ngIf="news.id">
         <label for="id">ID:</label>
-        <input type="number" [value]="news.id" id="id" name="id" readonly>
+        <input type="number" [value]="news.id" id="id" name="id" readonly />
       </p>
       <p>
-        <label for="title">Titel:</label>
-        <input [(ngModel)]="news.title" id="title" name="title" required minlength="2">
+        <label for="title">Vorname:</label>
+        <input
+          [(ngModel)]="news.firstName"
+          id="firstName"
+          name="firstName"
+          required
+          minlength="2"
+        />
       </p>
       <p>
-        <label for="title">Text:</label>
-        <textarea [(ngModel)]="news.text" id="text" name="text" required minlength="5"></textarea>
+        <label for="title">Nachname:</label>
+        <input
+          [(ngModel)]="news.lastName"
+          id="lastName"
+          name="lastName"
+          required
+          minlength="2"
+        />
       </p>
       <p>
-        <button *ngIf="form.valid" (click)="finishWithOk()">Ok</button>
-        <button (click)="finishWithCancel()">Abbrechen</button>
+        <label for="birthDate">Geburtstag:</label>
+        <input
+          [(ngModel)]="news.birthDate"
+          id="birthDate"
+          type="date"
+          name="birthDate"
+          value="{{ news.birthDate }}"
+          required
+        />
+      </p>
+      <p>
+        <label for="active">Aktiviert:</label>
+        <input
+          [(ngModel)]="news.active"
+          id="active"
+          type="checkbox"
+          name="active"
+        />
+      </p>
+      <p>
+        <button
+          *ngIf="form.valid"
+          (click)="finishWithOk()"
+          class="btn btn-success"
+        >
+          Ok
+        </button>
+        <button (click)="finishWithCancel()" class="btn btn-danger">
+          Abbrechen
+        </button>
       </p>
     </form>
   `,
-  styles: [`
-    * {
-      margin: 0;
-      padding: 0;
-    }
+  styles: [
+    `
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
-    button, input, textarea {
-      margin: 5px;
-    }
+      button,
+      input,
+      textarea {
+        margin: 5px;
+      }
 
-    form {
-      margin-top: 10px;
-    }
+      form {
+        margin-top: 10px;
+      }
 
-    h2 {
-      margin: 10px 0;
-    }
+      h2 {
+        margin: 10px 0;
+      }
 
-    label {
-      display: inline-block;
-      vertical-align: top;
-      width: 50px;
-    }
-
-	textarea {
-	  height: 100px;
-	  width: 500px;
-	}	
-  `]
+      label {
+        display: inline-block;
+        vertical-align: top;
+        width: 100px;
+      }
+    `
+  ]
 })
 export class NewsInputComponent {
   @Output() ok = new EventEmitter<News>();
   @Output() cancel = new EventEmitter();
   news: News;
 
-  constructor(private newsService: NewsService) { }
+  constructor(private newsService: NewsService) {}
 
   startAddingNews() {
+    console.log("start adding", this.news);
     this.news = new News();
   }
 
   startEditingNews(id: number) {
-    this.newsService.retrieve(id).then(
-      news => this.news = news
-    );
+    console.log("start editing");
+    this.newsService.retrieve(id).then(news => (this.news = news));
+  }
+
+  setBirthDate() {
+    console.log("bday");
+    this.news.birthDate = new Date();
   }
 
   finishWithOk() {
-    this.createOrUpdate().then(
-      () => {
-        this.ok.emit(this.news);
-        this.news = null;
-      }
-    );
+    console.log("finishing");
+    this.createOrUpdate().then(() => {
+      this.ok.emit(this.news);
+      this.news = null;
+    });
   }
 
   finishWithCancel() {
