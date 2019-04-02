@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/newsservlet")
+@WebServlet(urlPatterns = "/customerservlet")
 @SuppressWarnings("serial")
-public class NewsServlet extends HttpServlet {
+public class CustomerServlet extends HttpServlet {
 	@Inject
-	private NewsService newsService;
+	private CustomerService customerService;
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,20 +26,20 @@ public class NewsServlet extends HttpServlet {
 			"<html>" +
 			"<head>" +
 			"<meta charset='UTF-8'>" +
-			"<title>News</title>" +
+			"<title>Customers</title>" +
 			"</head>" +
 			"<body>" +
-			"<h1>News</h1>"
+			"<h1>Customers</h1>"
 		);
 		
-		List<News> newsList = newsService.getAllNews();
+		List<Customer> customersList = customerService.getAllCustomers();
 		
-		for (News news : newsList) {
+		for (Customer customers : customersList) {
 			html.append(
-				"<h2>" + news.getLastname() + "</h2>" +
-				"<p>" + news.getFirstname() + "</p>" +
-				"<p>" + news.getBirthDate() + "</p>" +
-				"<p>" + news.getActive()    + "</p>"
+				"<h2>" + customers.getFirstName() + "</h2>" +
+				"<p>" + customers.getLastName() + "</p>" +
+				"<p>" + customers.getBirthDate() + "</p>" +
+				"<p>" + customers.isActive()    + "</p>"
 			);
 		}
 		

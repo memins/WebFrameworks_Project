@@ -23,75 +23,72 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Response.Status;
 
-
-@Path("/news")
+@Path("/customer")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class NewsResource {
-	private static final Logger LOGGER = Logger.getLogger(NewsResource.class.getName()); 
-	
+public class CustomerResource {
+	private static final Logger LOGGER = Logger.getLogger(CustomerResource.class.getName());
+
 	@PersistenceContext
 	private EntityManager em;
 	@Inject
-	private NewsService newsService;
+	private CustomerService customersService;
 	@Context
 	private UriInfo uriInfo;
-	
+
 	@POST
 	@Transactional
-	public Response create(News news) {
-		LOGGER.info("create >> news=" + news);
-		
-		em.persist(news);
-		URI uri = uriInfo.getAbsolutePathBuilder().path(news.getId().toString()).build();
+	public Response create(Customer customers) {
+		LOGGER.info("create >> customer=" + customers);
+
+		em.persist(customers);
+		URI uri = uriInfo.getAbsolutePathBuilder().path(customers.getId().toString()).build();
 		return Response.created(uri).build();
 	}
-	
+
 	@GET
 	@Path("/{id}")
-	public News retrieve(@PathParam("id") long id) {
+	public Customer retrieve(@PathParam("id") long id) {
 		LOGGER.info("retrieve >> id=" + id);
-		
-		return em.find(News.class, id);
+
+		return em.find(Customer.class, id);
 	}
-	
+
 	@PUT
 	@Path("/{id}")
 	@Transactional
-	public void update(@PathParam("id") long id, News newsNew) {
-		LOGGER.info("update >> id=" + id + ", news=" + newsNew);
+	public void update(@PathParam("id") long id, Customer customersNew) {
+		LOGGER.info("update >> id=" + id + ", customer=" + customersNew);
 
-		News newsOld = em.find(News.class, id);
-		if (newsOld != null) {
-			newsOld.setFirstname(newsNew.getFirstname());
-			newsOld.setLastname(newsNew.getLastname());
-			newsOld.setBirthDate(newsNew.getBirthDate());
-			newsOld.setActiveState(newsNew.getActive());
-		}
-		else {
+		Customer customerOld = em.find(Customer.class, id);
+		if (customerOld != null) {
+			customerOld.setFirstName(customersNew.getFirstName());
+			customerOld.setLastName(customersNew.getLastName());
+			customerOld.setBirthDate(customersNew.getBirthDate());
+			customerOld.setActive(customersNew.isActive());
+		} else {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
 	}
-	
+
 	@DELETE
 	@Path("/{id}")
 	@Transactional
 	public void delete(@PathParam("id") long id) {
 		LOGGER.info("delete >> id=" + id);
-		
-		News news = em.find(News.class, id);
+
+		Customer news = em.find(Customer.class, id);
 		if (news != null) {
 			em.remove(news);
-		}
-		else {
+		} else {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
-	}	
-	
+	}
+
 	@GET
-	public List<News> retrieveAll() {
+	public List<Customer> retrieveAll() {
 		LOGGER.info("retrieveAll");
 
-		return newsService.getAllNews();  
+		return customersService.getAllCustomers();
 	}
 }

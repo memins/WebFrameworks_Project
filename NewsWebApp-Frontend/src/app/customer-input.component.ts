@@ -1,19 +1,19 @@
 import { Component, Output, EventEmitter } from "@angular/core";
-import { News, NewsService } from "./services";
+import { Customer, CustomerService } from "./services";
 
 @Component({
-  selector: "app-news-input",
+  selector: "app-customer-input",
   template: `
-    <form *ngIf="news" novalidate #form="ngForm">
-      <h2>{{ news.id ? "Bearbeite Kunde" : "Füge Kunden hinzu" }} ...</h2>
-      <p *ngIf="news.id">
+    <form *ngIf="customer" novalidate #form="ngForm">
+      <h2>{{ customer.id ? "Bearbeite Kunde" : "Füge Kunden hinzu" }} ...</h2>
+      <p *ngIf="customer.id">
         <label for="id">ID:</label>
-        <input type="number" [value]="news.id" id="id" name="id" readonly />
+        <input type="number" [value]="customer.id" id="id" name="id" readonly />
       </p>
       <p>
         <label for="title">Vorname:</label>
         <input
-          [(ngModel)]="news.firstName"
+          [(ngModel)]="customer.firstName"
           id="firstName"
           name="firstName"
           required
@@ -23,7 +23,7 @@ import { News, NewsService } from "./services";
       <p>
         <label for="title">Nachname:</label>
         <input
-          [(ngModel)]="news.lastName"
+          [(ngModel)]="customer.lastName"
           id="lastName"
           name="lastName"
           required
@@ -33,18 +33,18 @@ import { News, NewsService } from "./services";
       <p>
         <label for="birthDate">Geburtstag:</label>
         <input
-          [(ngModel)]="news.birthDate"
+          [(ngModel)]="customer.birthDate"
           id="birthDate"
           type="date"
           name="birthDate"
-          value="{{ news.birthDate }}"
+          value="{{ customer.birthDate }}"
           required
         />
       </p>
       <p>
         <label for="active">Aktiviert:</label>
         <input
-          [(ngModel)]="news.active"
+          [(ngModel)]="customer.active"
           id="active"
           type="checkbox"
           name="active"
@@ -93,46 +93,46 @@ import { News, NewsService } from "./services";
     `
   ]
 })
-export class NewsInputComponent {
-  @Output() ok = new EventEmitter<News>();
+export class CustomerInputComponent {
+  @Output() ok = new EventEmitter<Customer>();
   @Output() cancel = new EventEmitter();
-  news: News;
+  customer: Customer;
 
-  constructor(private newsService: NewsService) {}
+  constructor(private customerService: CustomerService) { }
 
-  startAddingNews() {
-    console.log("start adding", this.news);
-    this.news = new News();
+  startAddingCustomer() {
+    console.log("start adding", this.customer);
+    this.customer = new Customer();
   }
 
-  startEditingNews(id: number) {
+  startEditingCustomer(id: number) {
     console.log("start editing");
-    this.newsService.retrieve(id).then(news => (this.news = news));
+    this.customerService.retrieve(id).then(customer => (this.customer = customer));
   }
 
   setBirthDate() {
     console.log("bday");
-    this.news.birthDate = new Date();
+    this.customer.birthDate = new Date();
   }
 
   finishWithOk() {
     console.log("finishing");
     this.createOrUpdate().then(() => {
-      this.ok.emit(this.news);
-      this.news = null;
+      this.ok.emit(this.customer);
+      this.customer = null;
     });
   }
 
   finishWithCancel() {
     this.cancel.emit();
-    this.news = null;
+    this.customer = null;
   }
 
   createOrUpdate() {
-    if (this.news.id) {
-      return this.newsService.update(this.news);
+    if (this.customer.id) {
+      return this.customerService.update(this.customer);
     } else {
-      return this.newsService.create(this.news);
+      return this.customerService.create(this.customer);
     }
   }
 }

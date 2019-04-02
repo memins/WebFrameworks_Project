@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37c6360d-2b8f-49d7-8708-3d305221d9c1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../NewsWebApp-Backend/src/main/java/at/technikumwien/news/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsWebApp-Backend/src/main/java/at/technikumwien/news/News.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NewsWebApp-Backend/src/main/java/at/technikumwien/news/NewsResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsWebApp-Backend/src/main/java/at/technikumwien/news/NewsResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NewsWebApp-Backend/src/main/java/at/technikumwien/news/NewsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsWebApp-Backend/src/main/java/at/technikumwien/news/NewsServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/news-input.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/news-input.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/news-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/news-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="37c6360d-2b8f-49d7-8708-3d305221d9c1" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/filter.pipe.ts">
           <provider selected="true" editor-type-id="text-editor" />
@@ -101,22 +92,20 @@
       <updated>1552056751849</updated>
       <workItem from="1552056753784" duration="2000" />
       <workItem from="1552056784623" duration="18000" />
+      <workItem from="1553050546329" duration="14000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20000" />
+    <option name="totallyTimeSpent" value="34000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="88" y="47" width="1650" height="1027" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24984653" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -127,6 +116,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />

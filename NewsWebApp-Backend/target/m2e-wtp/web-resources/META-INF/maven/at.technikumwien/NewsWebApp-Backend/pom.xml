@@ -11,7 +11,7 @@
 	<name>NewsWebApp-Backend</name>
 
 	<build>
-		<finalName>news</finalName>
+		<finalName>customer</finalName>
 	</build>	
 	
 	<dependencies>

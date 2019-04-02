@@ -1,43 +1,39 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-export class News {
+export class Customer {
   id: number;
   firstName: string;
   lastName: string;
   birthDate: Date;
-  active: boolean;
+  active: boolean = false;
 }
 
-const NEWS_RESOURCE_URL = "http://localhost:8080/news/resources/news";
+const NEWS_RESOURCE_URL = "http://localhost:8080/customer/resources/customer";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
-export class NewsService {
-  constructor(private httpClient: HttpClient) {}
+export class CustomerService {
+  constructor(private httpClient: HttpClient) { }
 
-  create(news: News): Promise<any> {
-    console.log("adding cust", news);
-    return this.httpClient.post(NEWS_RESOURCE_URL, news).toPromise();
+  create(customer: Customer): Promise<any> {
+    return this.httpClient.post(NEWS_RESOURCE_URL, customer).toPromise();
   }
 
-  retrieve(id: number): Promise<News> {
-    return this.httpClient.get<News>(NEWS_RESOURCE_URL + "/" + id).toPromise();
+  retrieve(id: number): Promise<Customer> {
+    return this.httpClient.get<Customer>(NEWS_RESOURCE_URL + '/' + id).toPromise();
   }
 
-  update(news: News): Promise<any> {
-    return this.httpClient
-      .put(NEWS_RESOURCE_URL + "/" + news.id, news)
-      .toPromise();
+  update(customer: Customer): Promise<any> {
+    return this.httpClient.put(NEWS_RESOURCE_URL + '/' + customer.id, customer).toPromise();
   }
 
   delete(id: number): Promise<any> {
-    return this.httpClient.delete(NEWS_RESOURCE_URL + "/" + id).toPromise();
+    return this.httpClient.delete(NEWS_RESOURCE_URL + '/' + id).toPromise();
   }
 
-  retrieveAll(): Promise<News[]> {
-    console.log();
-    return this.httpClient.get<News[]>(NEWS_RESOURCE_URL).toPromise();
+  retrieveAll(): Promise<Customer[]> {
+    return this.httpClient.get<Customer[]>(NEWS_RESOURCE_URL).toPromise();
   }
 }
